@@ -1,0 +1,39 @@
+/*
+Game of Life ticker from text.
+Copyright (C) 2016  Brad Parker Keserich
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+
+// params
+uint n_head;
+uint n_belt_A;
+uint n_belt_B;
+
+// belt data
+bool belt[5 + 4 * n_belt_B]; // init as all false
+
+// translation vectors
+int v_head[2] = {46 * n_head, 0};
+int v_belt_A[2] = {-23 * n_belt_A, -23 * n_belt_A};
+int v_belt_B[2] = {23 * n_belt_B, -23 * n_belt_B};
+
+// component origin vectors
+int o_stopper[2] = {0, 0};
+int o_head[2] = {-36, -24} + v_head;
+int o_belt_A[2] = {-42, -81} + v_head + v_belt_A;
+int o_belt_B[2] = {-25, -77} + v_head + v_belt_A + v_belt_B;
+
+///
+// now use the above component and copy it into an array 
