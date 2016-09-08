@@ -136,8 +136,9 @@ void GameOfLife::_initialize(uint width, uint height, bool data[], bool useOpenG
     m_worldData.height = height;
     m_useOpenGL = useOpenGL;
     
+    // try changing the number of threads if your text won't run
     m_numThreads = 4 * 32; //TODO could be setting better
-    m_numBlocks = ((width * height) / m_numThreads) + 1; // N / THREADS_PER_BLOCK
+    m_numBlocks = ((width * height) / m_numThreads); //+ 1; // N / THREADS_PER_BLOCK
     printf("m_numBlocks = %i, m_numThreads = %i, total = %i\n", m_numBlocks, m_numThreads, m_numBlocks * m_numThreads); //TODO verbose
     m_colorData = new GLuint[2 * width * height];
     m_tmpColorData = new GLuint[2 * width * height]; //TODO for debugging
