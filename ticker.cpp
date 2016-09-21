@@ -897,7 +897,7 @@ void Ticker::createTickerFromString(std::string tickerText) // for now we only u
     stringRLE.loadCharArrayRLE(tickerText);
     
     // with our font we automatically choose the number of belts
-    m_stopperDistance = 2 + 2 * stringRLE.x;
+    m_stopperDistance = stringRLE.x;
     m_beltLength = std::max(stringRLE.x - 1, static_cast<uint>(0)); // work shown in notepad
     m_numBelts = 2 * stringRLE.y;
     m_numBeltGliders = 5 + 4 * m_beltLength; // form is 5 + 4 * m_beltLength
@@ -926,9 +926,8 @@ void Ticker::createTickerFromString(char * tickerText) // for now we only use th
     stringRLE.loadCharArrayRLE(tickerText);
     
     // with our font we automatically choose the number of belts
-    //m_stopperDistance = 2 + 2 * stringRLE.x;
-    
-    m_stopperDistance = 25; //TODO should really be adjustable
+    m_stopperDistance = stringRLE.x;
+    //m_stopperDistance = 25; //NOTE use fixed for custom tickers
     
     m_beltLength = std::max(stringRLE.x / 2 - 1, static_cast<uint>(0)); // work shown in notepad
     m_numBelts = 2 * stringRLE.y;
