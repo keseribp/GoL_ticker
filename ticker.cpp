@@ -449,8 +449,11 @@ void Ticker::_compileTicker()
         tmpUnivYMax = std::max(tmpUnivYMax, beltCompOriginVects[2 * i + 1] 
                       + static_cast<int>(m_beltCompY));
     }
+    // force to be a multiple of 32 for GPU
     m_univX = tmpUnivXMax - tmpUnivXMin + buffer;
     m_univY = tmpUnivYMax - tmpUnivYMin + buffer;
+    m_univX += 32 - (m_univX % 32);
+    m_univY += 32 - (m_univY % 32);
     printf("m_univX = %i, m_univY = %i\n", m_univX, m_univY);
     
     if (m_data == nullptr) m_data = new bool[m_univX * m_univY];
